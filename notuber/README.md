@@ -15,6 +15,7 @@ Say approximately how many hours you have spent completing the lab.
 
 Performance Enhancements:
 - Time to Interactive: 3.5 s -> 3.4 s
+- Transfer Size: 2,021 KiB -> 2,019 KiB
 - Speed Index: 2.8 s -> 2.7 s
 - Total Blocking Time: 30 ms -> 20 ms
 - Largest Contentful Paint: 7.6 s -> 7.7 s
