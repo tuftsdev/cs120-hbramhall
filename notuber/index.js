@@ -56,7 +56,7 @@ function getNearbyCars(){
     var numLines;
     var carMarker;
     var http = new XMLHttpRequest();
-    var url = 'https://jordan-marsh.herokuapp.com/rides';
+    var url = 'https://serene-spire-54395.herokuapp.com/rides';
     var params = 'username=AmiUR1Xl&lat=' + lat + '&lng=' + lng;
     var resultingData = '';
     var carsData = '';
