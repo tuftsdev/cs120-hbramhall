@@ -1,0 +1,48 @@
+
+#header {
+    background-color: #101b42;
+}
+#hrHead {
+    height: 3px;
+    background-color: aqua;
+    border: none;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+body {
+    background-color: #bbbcbf;
+}
+
+#logo {
+    padding-left: 20px;
+}
+
+@media (min-width: 801px) {
+    #logo {
+        /* padding: 0 0 .5% 1.5rem; */
+        float: left;
+    }}
+
+#title {
+    padding-left: 140px;
+    color: #ffff;
+}
+pre{
+    /* Referenced the link below for nice looking code blocks: */
+    /* https://stackoverflow.com/questions/4000792/how-can-i-style-code-listings-using-css */
+    background-color: slategray;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;    
+}
