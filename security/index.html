@@ -12,24 +12,39 @@
         <h1 id = "title">Penetration Test Results</h1>
         <hr id = "hrHead"><br>
         </div>
-        <h3>Summary:</h3>
+        <h3>Introduction:</h3>
+        <ul id="bullet">
+            I was hired to review the ride hailing service application contained in the file server-vuln.js. The intention is to find a minimum of three 3 vulnerabilities, however four were identified (see below) and I recommend each vulnerability is addressed.
+        </ul>
+        <h3>Methodology:</h3>
+        <ul id="bullet">
+            The penetration testing method used was code review.
+        </ul>
+
+        <h3>Abstract of Findings:</h3>
         <ul id="bullet">
             The application under review has three significant identified security vulnerabilities. Malicious actors have the ability to perform "Stored XSS" attacks, "DOM Based XSS" attacks, and "SQL Injection" attacks. The description of each attack is listed below followed by a description of the risk to your application and users, the offending code line-number, suggested remediation, and example code.
         </ul>
-        <hr>
-
+        <hr>              
         <h3>Stored XSS:</h3>
+            <ul id="bullet"> <h4>Issue:</h4>
+                <ul id="bullet">Stored XSS attack is possible without the sanitization of the username. This database will automatically store any input including script input. This is problematic because the app also displays all users which would initiate any script stored to the database.</ul>
+            </ul>
+            <ul id="bullet"> <h4>Location:</h4>
+                <ul id="bullet">Line 26</ul>
+            </ul>
+            <ul id="bullet"> <h4>Severity:</h4>
+                <ul id="bullet">High</ul>
+                <ul id="bullet">Remote code execution on a victims browser, stealing credentials, or delivering malware to the victim rank this vulnerability as severe on OWASP.</ul>
+            </ul>
             <ul id="bullet"> <h4>Description:</h4>
                 <ul id="bullet">XSS is an attack technique that injects malicious code into vulnerable web applications. Unlike other attacks, this technique does not target the web server itself, but the user's browser.</ul>
                 <ul id="bullet"><a href="https://owasp.org/www-community/attacks/xss/">LINK TO DESCRIPTION</a></ul>
             </ul>
-            <ul id="bullet"> <h4>Exposure:</h4>
-                <ul id="bullet">Stored XSS attack is possible without the sanitization of the username. This database will automatically store any input including script input. This is problematic because the app also displays all users which would initiate any script stored to the database.</ul>
-            </ul>
-            <ul id="bullet"> <h4>Line Number:</h4>
-                <ul id="bullet">Line 26</ul>
-            </ul>
-            <ul id="bullet"> <h4>Mitigation:</h4>
+            <ul id="bullet"> <h4>Proof:</h4></ul>
+            <img id = "logo" src="proof_username.png" alt="proof_username" width="1000"><br><br><br><br>      
+                                    
+            <ul id="bullet"> <h4>Resolution:</h4>
                 <ul id="bullet">Sanitize the username input.</ul>
             </ul>
             <ul> <h4>Example Code:</h4>
@@ -39,17 +54,24 @@
             </ul>
         <hr>
         <h3>DOM Based XSS:</h3>
+            <ul id="bullet"> <h4>Issue:</h4>
+                <ul id="bullet">A user can modify the entire layout of the layout, look, and feel of the website through a stored XSS attack. To do this, the attacker would insert html elements which would display when usernames are added to the ul elements.</ul>
+            </ul>
+            <ul id="bullet"> <h4>Location:</h4>
+                <ul id="bullet">Line 26</ul>
+            </ul>
+            <ul id="bullet"> <h4>Severity:</h4>
+                <ul id="bullet">Moderate to High</ul>
+                <ul id="bullet">This is considered moderate to high severity depending on the user base. If a DOM based XSS attack was executed and a malicious link was stored on the website, it is possible that a user could click on the malicious link and download malware.</ul>                
+            </ul>            
             <ul id="bullet"> <h4>Description:</h4>
                 <ul id="bullet">This is an XSS attack wherein the attack payload is executed as a result of modifying the DOM “environment” in the victim’s browser used by the original client side script, so that the client side code runs in an “unexpected” manner.</ul>
                 <ul id="bullet"><a href="https://owasp.org/www-community/attacks/DOM_Based_XSS#:~:text=Definition,in%20an%20%E2%80%9Cunexpected%E2%80%9D%20manner">LINK TO DESCRIPTION</a></ul>
             </ul>
-            <ul id="bullet"> <h4>Exposure:</h4>
-                <ul id="bullet">A user can modify the entire layout of the layout, look, and feel of the website through a stored XSS attack. To do this, the attacker would insert html elements which would display when usernames are added to the ul elements.</ul>
-            </ul>
-            <ul id="bullet"> <h4>Line Number:</h4>
-                <ul id="bullet">Line 26</ul>
-            </ul>
-            <ul id="bullet"> <h4>Mitigation:</h4>
+            <ul id="bullet"> <h4>Proof:</h4></ul>
+            <img id = "logo" src="proof_username.png" alt="proof_username" width="1000"><br><br><br><br>      
+            
+            <ul id="bullet"> <h4>Resolution:</h4>
                 <ul id="bullet">Use validator.js to convert unacceptable characters like arrow brackets. This will escape any malicious content and display as regular text to the client.</ul>
             </ul>
             <ul> <h4>Example Code:</h4>
@@ -60,18 +82,23 @@
             </ul> 
         <hr>      
         <h3>SQL Injection:</h3>
-            <ul id="bullet"> <h4>Description:</h4>
-                <ul id="bullet">A SQL injection attack consists of insertion or “injection” of a SQL query via the input data from the client to the application.</ul>
-                <ul id="bullet"><a href="https://owasp.org/www-community/attacks/SQL_Injection">LINK TO DESCRIPTION</a></ul>
-            </ul>
-            <ul id="bullet"> <h4>Exposure:</h4>
+
+            <ul id="bullet"> <h4>Issue:</h4>
                 <ul id="bullet">Database dump - An attacker could dump all user fields in the database and display them to the screen, exposing sensistive user information.</ul>
             </ul>
-            <ul id="bullet"> <h4>Line Number:</h4>
+            <ul id="bullet"> <h4>Location:</h4>
                 <ul id="bullet">Line 72</ul>
                 <ul id="bullet">Line 87</ul>
             </ul>
-            <ul id="bullet"> <h4>Mitigation:</h4>
+            <ul id="bullet"> <h4>Severity:</h4>
+                <ul id="bullet">Low</ul>
+                <ul id="bullet">There currently are not many fields in the database and the site displays all user information to the client. Therefore, at this time, it is not a major risk. However, this should be fixed so that as the application grows, user information is secure.</ul>
+            </ul>            
+            <ul id="bullet"> <h4>Description:</h4>
+                <ul id="bullet">A SQL injection attack consists of insertion or “injection” of a SQL query via the input data from the client to the application.</ul>
+                <ul id="bullet"><a href="https://owasp.org/www-community/attacks/SQL_Injection">LINK TO DESCRIPTION</a></ul>
+            </ul>            
+            <ul id="bullet"><h4>Resolution:</h4>
                 <ul id="bullet">Sanitize the username input.</ul>
             </ul>
             <ul> <h4>Example Code:</h4>
@@ -82,23 +109,38 @@
             
         <hr>
         <h3>Impersonation:</h3>
+            <ul id="bullet"> <h4>Issue:</h4>
+                <ul id="bullet">A user can pretend to be another, and request a ride on behalf of that person.</ul>
+            </ul>
+            <ul id="bullet"> <h4>Location:</h4>
+                <ul id="bullet">Line 23 - 27</ul>
+            </ul>
+            <ul id="bullet"> <h4>Severity:</h4>
+                <ul id="bullet">High</ul>
+                <ul id="bullet">Line 23 - 27</ul>
+            </ul>            
             <ul id="bullet"> <h4>Description:</h4>
                 <ul id="bullet">Impersonation attack occurs when a user pretends to be a user other than themselves.</ul>
                 <ul id="bullet"><a href="https://owasp.org/www-community/attacks/Session_hijacking_attack">LINK TO DESCRIPTION</a></ul>
-            </ul>
-            <ul id="bullet"> <h4>Exposure:</h4>
-                <ul id="bullet">A user can pretend to be another, and request a ride on behalf of that person.</ul>
-            </ul>
-            <ul id="bullet"> <h4>Line Number:</h4>
-                <ul id="bullet">Line 23 - 27</ul>
-            </ul>
-            <ul id="bullet"> <h4>Mitigation:</h4>
+            </ul>   
+            <ul id="bullet"> <h4>Proof:</h4></ul>
+            <img id = "logo" src="sqlInjection_vulnerability.png" alt="sqlInjection_vulnerability" width="500"><br><br><br><br>      
+                                       
+            <ul id="bullet"> <h4>Resolution:</h4>
                 <ul id="bullet">Make sure the user is who they say they are. This would require user login and authentication which matches a user to one in your database.</ul>
             </ul>
             <ul> <h4>Example Code:</h4>
                 <ul id="bullet">N/A</ul>
             </ul>
             
-        <hr>        
+        <hr>
+        <h3>Conclusion:</h3>
+        <ul id="bullet">
+            I recommend that all moderate and high vulnerabilities are addressed before the application is released as production ready.<br>
+            - Install validator.js (Complimentary)<br>
+            - Sanitize User Input ($1000 USD)<br>
+            - Implement User authentication ($4000 USD) <br>
+            </ul>
+        <hr>                
     </body>
 </html>
